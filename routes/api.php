@@ -13,6 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::resource('publicaciones','PublicacionesController',['only'=>['index','store','show']]);
+Route::post('login', 'AutenticacionController@postLogin');
