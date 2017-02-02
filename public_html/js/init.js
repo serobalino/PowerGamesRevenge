@@ -2,16 +2,29 @@
   $(function(){
     $('.button-collapse').sideNav();
     $('.parallax').parallax();
-    $('.carousel.carousel-slider').carousel({full_width: true});
+
     $('#textarea1').trigger('autoresize');
     $(".menuamigos").sideNav();
+      const url_car="/api/carusel";
+      $.ajax({
+          type: "GET",
+          url: url_car,
+          success: function (data){
+              var imagenes='';
+              console.log(data);
 
-
+              $.each(data, function (numero,valor) {
+                  if(valor.image!=undefined)
+                    imagenes+='<a class="carousel-item"><img src="'+valor.image+'"/></a>';
+              });
+              $('#images').html(imagenes);
+              $('.carousel.carousel-slider').carousel({full_width: true});
+          }
+      });
   });
 })(jQuery);
 autoplay()
 function autoplay() {
     $('.carousel').carousel('next');
-    console.log('cambio de imagen');
     setTimeout(autoplay, 4500);
 }

@@ -132,13 +132,12 @@
                 <div class="carousel carousel-slider">
                     <div class="carousel-fixed-item ">
                         <div class="caption center-align">
-                            <h3 class="valign">Games</h3>
+                            <h3 class="valign">Juegos populares</h3>
                         </div>
                     </div>
-                    <a class="carousel-item" href="#one!"><img src="http://lorempixel.com/1900/600/technics/1"></a>
-                    <a class="carousel-item" href="#two!"><img src="http://lorempixel.com/1900/600/technics/2"></a>
-                    <a class="carousel-item" href="#three!"><img src="http://lorempixel.com/1900/600/technics/3"></a>
-                    <a class="carousel-item" href="#four!"><img src="http://lorempixel.com/1900/600/technics/4"></a>
+                    <div id="images">
+                        <a class="carousel-item"><img src="https://i.kinja-img.com/gawker-media/image/upload/s--aXYZiwOL--/c_fit,fl_progressive,q_80,w_636/d6pk8g4kkcwevejxlumn.png"/></a>
+                    </div>
                 </div>
             </div>
         </div>

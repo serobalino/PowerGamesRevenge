@@ -56,6 +56,7 @@ function nuevaPublicacione(){
             data:{'id_usr':id_usr,'publicacion':texto},
             success: function (data){
                 Materialize.toast(data.mensaje,4000);
+                $('textarea').empty();
                 if(data.return)
                     cargarPublicaciones();
             },

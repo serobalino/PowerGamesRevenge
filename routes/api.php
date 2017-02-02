@@ -20,5 +20,11 @@ Route::group(['middleware' => 'cors'], function() {
     Route::resource('publicaciones','PublicacionesController',['only'=>['index','store','show','destroy']]);
     Route::resource('megusta','MegustaController',['only'=>['store']]);
     Route::resource('retar','RetarController',['only'=>['store']]);
+
+
+
+    //Route::resource('juegosAPI','APIJuegosController',['only'=>['show','index']]);
+    Route::get('carusel', 'APIJuegosController@carusel');
+
 });
 
