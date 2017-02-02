@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('c1')
+    <div id="listajuegos"></div>
 @endsection
 @section('c2')
     <div class="card ">

@@ -11,8 +11,6 @@
           url: url_car,
           success: function (data){
               var imagenes='';
-              console.log(data);
-
               $.each(data, function (numero,valor) {
                   if(valor.image!=undefined)
                     imagenes+='<a class="carousel-item"><img src="'+valor.image+'"/></a>';

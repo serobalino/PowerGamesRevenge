@@ -1,8 +1,13 @@
 $( document ).ready(function() {
     cargarPublicaciones();
+    listarjuegos();
     $('.publicar').click(function(){
         nuevaPublicacione();
     });
+    $('#b_juegos').click(function(){
+        buscarjuego();
+    });
+
 
 });
 function cargarPublicaciones(){
@@ -56,7 +61,7 @@ function nuevaPublicacione(){
             data:{'id_usr':id_usr,'publicacion':texto},
             success: function (data){
                 Materialize.toast(data.mensaje,4000);
-                $('textarea').empty();
+                $('textarea').html('');
                 if(data.return)
                     cargarPublicaciones();
             },
@@ -118,4 +123,81 @@ function retar(idpublicacion){
         }
     });
     cargarPublicaciones();
+}
+function listarjuegos(){
+    const id_usr=$('#usr_id').val();
+    const url_api="/api/juegos";
+    $.ajax({
+        type: "GET",
+        url: url_api,
+        data:{'id_usr':id_usr},
+        success: function (data){
+            var html='';
+            $.each(data.mensaje, function (numero,valor) {
+                imagen=valor.api[1];
+                console.log(valor);
+                etimg='<i class="material-icons circle">folder</i>';
+                if(imagen!=undefined)
+                    etimg='<img src="'+imagen.cover.url+'">';
+                html+='<div class="row"><div class="card horizontal"><div class="card-image">'+etimg+'</div><div class="card-stacked"><div class="card-content"><p>'+valor.titulo_ju+'</p></div></div></div></div>'
+            });
+            $('#listajuegos').html(html);
+        }
+    });
+
+}
+function buscarjuego(){
+    $('#cuerpo_juego').html('<div class="center-align"><div class="preloader-wrapper big active"><div class="spinner-layer spinner-red-only"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> </div></div>');
+    $('#modal2').openModal();
+    formulario=' <div class="row"> <form class="col s12"> <div class="row"> <div class="input-field col s10"> <i class="material-icons prefix">games</i> <input id="texto_juego" type="text" class="validate"> <label for="icon_prefix">Juego</label> </div> <button class="waves-effect waves-light btn black" type="button" id="juegos_query"><i class="material-icons right">search</i> Buscar</button></div> </form> </div><div id="lista_juegos_api"></div>';
+    $('#cuerpo_juego').html(formulario);
+    $('#juegos_query').click(function(){
+        resultadobusqueda();
+    });
+}
+function resultadobusqueda(){
+    const id_usr=$('#usr_id').val();
+    var query=$('#texto_juego').val();
+    if(query!=''){
+        var url_api='/api/juegos/'+query;
+        $.ajax({
+            type: "GET",
+            url: url_api,
+            data:{'id_usr':id_usr},
+            success: function (data){
+                console.log(data);
+                var html='<ul class="collection">';
+                $.each(data.mensaje, function (numero,valor) {
+                    imagen='<i class="material-icons circle">folder</i>';
+                    nombre='';
+                    resumen='';
+                    if(valor.cover!=undefined)
+                        imagen='<img src="'+valor.cover.url+'" alt="" class="cicle"/>';
+                    if(valor.name!=undefined)
+                        nombre=valor.name;
+                    if(valor.summary!=undefined)
+                        resumen=valor.summary;
+                    html+='<li class="collection-item avatar">'+imagen+'<span class="title">'+nombre+'</span><p>'+resumen+'</p><button class="secondary-content" onclick="guardarJuego('+valor.id+',\''+valor.name+'\')"><i class="material-icons">done</i></button></li>';
+                });
+                $('#lista_juegos_api').html(html+'</ul>');
+            }
+        });
+    }else{
+        Materialize.toast('🤔 Debes escribir algo para buscar!',4000);
+    }
+
+}
+function guardarJuego(id_juego,titulo){
+    const id_usr=$('#usr_id').val();
+    var url_api='/api/juegos';
+    $.ajax({
+        type: "POST",
+        url: url_api,
+        data:{'id_usr':id_usr,'id_jue':id_juego,'titulo':titulo},
+        success: function (data){
+            Materialize.toast(data.mensaje,4000);
+            listarjuegos();
+            $('#lista_juegos_api').html('');
+        }
+    });
 }

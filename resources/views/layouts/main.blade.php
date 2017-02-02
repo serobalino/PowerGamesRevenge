@@ -37,6 +37,17 @@
         </div>
     </div>
 </div>
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        <h4>Buscar Juego</h4>
+        <div class="row">
+            <p class="black-text" id="cuerpo_juego">
+
+
+            </p>
+        </div>
+    </div>
+</div>
 <nav>
     <div class="nav-wrapper" role="navigation">
         <a href="{{ url('/') }}" class="brand-logo">  {{ config('app.name', 'Laravel') }}</a>
@@ -131,6 +142,9 @@
             <div class="valign-wrapper">
                 <div class="carousel carousel-slider">
                     <div class="carousel-fixed-item ">
+                        <div class="carousel-fixed-item left">
+                            <button class="btn-floating btn-large waves-effect waves-light red" id="b_juegos"><i class="material-icons">add</i></button>
+                        </div>
                         <div class="caption center-align">
                             <h3 class="valign">Juegos populares</h3>
                         </div>
