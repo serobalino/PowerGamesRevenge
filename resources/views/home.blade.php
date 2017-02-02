@@ -7,21 +7,21 @@
             <div class="row">
                 <div class="input-field">
                     <label for="textarea1">Que estas pensando</label>
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                    <textarea class="materialize-textarea"></textarea>
                 </div>
             </div>
-
         </div>
         <div class="card-action">
-            <a href="#">Publicar</a>
-            <a href="#">Jugar</a>
+            <button class="publicar btn">Publicar</button>
         </div>
     </div>
+    <div id="publicaciones"></div>
 @endsection
 @section('c3')
 @endsection
 @section('js')
     <script src="js/init.js"></script>
+    <script src="js/publicaciones.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var hash = window.location.hash;

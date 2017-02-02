@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     21/1/2017 14:15:52                           */
+/* Created on:     1/2/2017 12:00:08                            */
 /*==============================================================*/
 
 
@@ -97,7 +97,7 @@ create table prestamos
 /*==============================================================*/
 create table publicaciones
 (
-   id_pub               int not null,
+   id_pub               int not null auto_increment,
    id                   int not null,
    detalle_pub          text not null,
    primary key (id_pub)

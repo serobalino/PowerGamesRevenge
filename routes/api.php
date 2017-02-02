@@ -12,6 +12,13 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Route::group(['middleware' => 'auth'], function() {
 
-Route::resource('publicaciones','PublicacionesController',['only'=>['index','store','show']]);
-Route::post('login', 'AutenticacionController@postLogin');
+//});
+Route::group(['middleware' => 'cors'], function() {
+    Route::post('login', 'AutenticacionController@postLogin');
+    Route::resource('publicaciones','PublicacionesController',['only'=>['index','store','show','destroy']]);
+    Route::resource('megusta','MegustaController',['only'=>['store']]);
+    Route::resource('retar','RetarController',['only'=>['store']]);
+});
+

@@ -60,6 +60,7 @@
             </div>
             <a href="#!user"><img class="circle" src="http://lorempixel.com/100/100/people/"></a>
             <a href="#!name"><span class="white-text name">{{Auth::user()->name}}</span></a>
+            <input type="hidden" id="usr_id" value="{{Auth::user()->id}}">
         </div></li>
     <li><a class='dropdown-button' href='#' data-activates='dropdown1'>Estado</a></li>
     <ul id='dropdown1' class='dropdown-content'>

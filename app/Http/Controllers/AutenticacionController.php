@@ -7,23 +7,29 @@ use Illuminate\Support\Facades\Auth;
 
 class AutenticacionController extends Controller{
     public function postLogin(Request $request){
-        if (Auth::attempt(
+        $variable = false;
+        if (Auth::once(
             [
                 'email'     => $request->email,
                 'password'  => $request->password,
             ]
             , $request->has('remember')
         )){
+            //Auth::loginUsingId(Auth::user()->id, true);
+
+            if (Auth::check()) {
+                $variable = true;
+            }
             return (
                 [
                     'id'        =>Auth::user()->id,
-                    'session'   =>true,
+                    'session'   =>$variable,
                     'mesanje'   =>'Credenciales correctos'
                 ]);
         }else{
             return (
                 [
-                    'session'   =>false,
+                    'session'   =>$variable,
                     'mesanje'   =>'Los campos no coinciden'
                 ]);
         }
